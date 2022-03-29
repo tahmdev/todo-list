@@ -21,7 +21,7 @@ const Main = () => {
   //get "list" from localStorage or return ""
   const [todoList, setTodoList] = useTodo("list", "")
   const [timer, setTimer] = useState(0)
-  const [filter, setFilter] = useState("All")
+  const [filter, setFilter] = useState("Ongoing")
   const [sortBy, setSortBy] = useState("Date added ↓") 
   //timer used to update all todo objects using useEffect 
   if (intervalId) {
@@ -81,7 +81,7 @@ const Main = () => {
         <div className="controls">
           <button className="new-item-button"onClick={addTodo}>New item</button>
           <div className="select-wrapper">
-            <select className="controls-select" id="filter-select" onChange={e => setFilter(e.target.value)}>
+            <select className="controls-select" id="filter-select" onChange={e => setFilter(e.target.value)} value={filter}>
               <option>All</option>
               <option>Ongoing</option>
               <option>On hold</option>
