@@ -100,7 +100,7 @@ const TodoTemplate = (props) => {
     if (isEdit == true){
         return(
             <div className="todo-wrapper" >
-                <div className="todo-header" >
+                <div className="todo-edit-header" >
                 <input className="todo-edit-title" type="text" placeholder="Title" onChange={e => setCurrentTitle(e.target.value)} value={currentTitle}/>
                 <select className="todo-edit-select" onChange={e => setCurrentStatus(e.target.value)} value={currentStatus}>
                     <option>Ongoing</option>

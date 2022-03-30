@@ -33,6 +33,14 @@ button:hover{
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 }
+.todo-edit-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
 .todo-title{
   margin: 0.2rem 1rem;
 }
