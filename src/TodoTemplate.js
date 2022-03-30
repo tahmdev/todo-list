@@ -3,7 +3,6 @@ import DateTimePicker from 'react-datetime-picker'
 import 'font-awesome/css/font-awesome.min.css';
 import { CirclePicker } from "react-color";
 
-//////////////TODO: Hide time left on onhold / add time finished on completed
 
 const TodoTemplate = (props) => {
     let deadline = new Date(props.todoList[props.idx].deadline);
@@ -16,6 +15,7 @@ const TodoTemplate = (props) => {
     const [timeColor, setTimeColor] = useState("green")
     const [color, setColor] = useState(props.color)
     const [fontColor, setFontColor] = useState("white")
+    
     const handleSave =()=> {
         let now = new Date();
         setIsEdit(false);
@@ -28,17 +28,25 @@ const TodoTemplate = (props) => {
             deadline: currentDeadline,
             totalTime: Math.floor((currentDeadline - now) / (1000*60) +1),
             color: color,
+            timeFinished:   currentStatus !== "Completed" 
+                            ? null
+                            : props.timeFinished === null
+                            ? String(now).substring(0, 24)
+                            : props.timeFinished
         }
         setTimeColor("green")
         props.setTodoList(newArr)
     }
+    
     const handleEdit = () => {
         
         setIsEdit(true);
     }
+    
     const handleCancel= () => {
         setIsEdit(false)
     }
+    
     const calculateTimeLeft = () => {
         if (currentDeadline && props.status == "Ongoing"){
             let now = new Date();
@@ -65,16 +73,20 @@ const TodoTemplate = (props) => {
             
         }
     }
+    
     const timeStyles = {
         backgroundColor: timeColor == "green"? "green" : timeColor =="orange" ? "orange" : "red",
     }
+    
     const headerStyles = {
         backgroundColor: props.status === "Ongoing" ? "#c3f0bb" : props.status === "On hold" ? "#f2c874" : "#f78686",
     }
+    
     //timer
     useEffect(() => {
         calculateTimeLeft()
     }, [props.timer])
+    
     //adjust font color
     useEffect(() => {
         if(color === "#cddc39" || color === "#ffeb3b" || color === "#ffc107"){
@@ -127,8 +139,13 @@ const TodoTemplate = (props) => {
         <div className="todo-footer" style={{backgroundColor: color}}>
             <button className="edit-button" onClick={handleEdit}>Edit</button>
             <div className="todo-time-wrapper">
-                <span className="todo-time-left" style={{color: fontColor}}>{timeLeft}</span>
-                <div id="todo-time-left-color" style={timeStyles}></div>
+
+                { currentStatus === "Ongoing" && <span className="todo-time-left" style={{color: fontColor}}>{timeLeft}</span>}
+                { currentStatus === "Ongoing" && <div id="todo-time-left-color" style={timeStyles}></div>}
+                
+                { currentStatus === "On hold" && <span className="todo-time-left" style={{color: fontColor}}>On hold</span>}
+
+                { currentStatus === "Completed" && <span className="todo-time-left" style={{color: fontColor}}>{props.timeFinished}</span>}
             </div>
         </div>
       </div>

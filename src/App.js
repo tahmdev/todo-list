@@ -46,7 +46,8 @@ const Main = () => {
         isEdit: true,
         dateAdded: now,
         deadline: now,
-        color: "#795548"
+        color: "#795548",
+        timeFinished: null,
       }, ]
     )
   }
@@ -114,6 +115,7 @@ const Main = () => {
               timer = {timer}
               totalTime = {item.totalTime}
               color= {item.color}
+              timeFinished = {item.timeFinished}
               />
             )
           }
