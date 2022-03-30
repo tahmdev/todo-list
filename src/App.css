@@ -22,7 +22,7 @@ button:hover{
   background-color: white;
   border-radius: 7px;
   min-width: 250px;
-  max-width: 700px;
+  max-width: 800px;
 }
 .todo-header{
   display: flex;
@@ -82,7 +82,7 @@ button:hover{
 .todo-footer::after{
   content: "";
   width: 90%;
-  max-width: 700px;
+  max-width: 800px;
   background-color: rgba(0, 0, 0, 0.2);
   height: 2.5rem;
   position: absolute;
@@ -134,12 +134,13 @@ button:hover{
   width: 100% !important;
   margin: 0.5rem;
   justify-content: space-evenly;
+  margin-bottom: 0 !important;
 }
 .controls{
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
   height:fit-content;
   margin-top: 0.5rem;
 }
